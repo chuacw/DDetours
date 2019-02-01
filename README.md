@@ -1,3 +1,7 @@
+![Version](https://img.shields.io/badge/version-v2-yellow.svg)
+![License](https://img.shields.io/github/license/MahdiSafsafi/DebugEngine.svg)
+![Lang](https://img.shields.io/github/languages/top/MahdiSafsafi/DDetours.svg)
+
 The **Delphi Detours Library** is a library allowing you to hook Delphi and Windows API functions. It provides an easy way to insert and remove hook.
 
 ## What's new in Version 2: ##
@@ -11,7 +15,7 @@ Please check [Version2](https://github.com/MahdiSafsafi/delphi-detours-library/b
   * Support COM **vtable** patching.
   * Fully <u><b>thread-safe</b></u> code hooking and unhooking.
   * Support hooking Object Method.
-  * Support Delphi 7/2005-2010/XE-XE8.
+  * Support Delphi 7/2005-2010/XE-Rio(Delphi 10.3).
   * Support Lazarus/FPC.
   * 64 bit address is supported.
   * The library does not use any external library.

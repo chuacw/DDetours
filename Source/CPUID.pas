@@ -1,7 +1,7 @@
 // **************************************************************************************************
 // CPUID for Delphi.
 // Unit CPUID
-// https://github.com/MahdiSafsafi/delphi-detours-library
+// https://github.com/MahdiSafsafi/DDetours
 
 // The contents of this file are subject to the Mozilla Public License Version 1.1 (the "License");
 // you may not use this file except in compliance with the License. You may obtain a copy of the
@@ -14,7 +14,7 @@
 // The Original Code is CPUID.pas.
 //
 // The Initial Developer of the Original Code is Mahdi Safsafi [SMP3].
-// Portions created by Mahdi Safsafi . are Copyright (C) 2013-2017 Mahdi Safsafi .
+// Portions created by Mahdi Safsafi . are Copyright (C) 2013-2019 Mahdi Safsafi .
 // All Rights Reserved.
 //
 // **************************************************************************************************
@@ -139,10 +139,17 @@ asm
   MOV RAX,RCX
   MOV R9,RDX
   CPUID
+  {$IFNDEF FPC}
   MOV R9.TCPUIDStruct.rEAX,EAX
   MOV R9.TCPUIDStruct.rEBX,EBX
   MOV R9.TCPUIDStruct.rECX,ECX
   MOV R9.TCPUIDStruct.rEDX,EDX
+  {$ELSE FPC}
+  MOV [R9].TCPUIDStruct.rEAX,EAX
+  MOV [R9].TCPUIDStruct.rEBX,EBX
+  MOV [R9].TCPUIDStruct.rECX,ECX
+  MOV [R9].TCPUIDStruct.rEDX,EDX
+  {$ENDIF !FPC}
   POP RDX
   POP RBX
   POP R9
@@ -160,7 +167,7 @@ asm
   2) Detect CPUID.1:ECX.AVX[bit 28] = 1
   => AVX instructions supported.
 
-  3) Issue XGETBV and verify that XCR0[2:1] = ‘11b’
+  3) Issue XGETBV and verify that XCR0[2:1] = â€˜11bâ€™
   => XMM state and YMM state are enabled by OS.
 
    }
